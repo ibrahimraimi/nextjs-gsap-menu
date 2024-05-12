@@ -8,6 +8,12 @@ import { useGSAP } from "@gsap/react";
 
 import "./menu.css";
 
+/* The `menuLinks` constant is an array of objects that stores information about the menu links for the
+navigation menu in the React component. Each object in the array represents a menu link and contains
+two properties: `path` which specifies the URL path the link should navigate to, and `label` which
+represents the text label displayed for that link in the menu. This array is used to dynamically
+generate the menu links in the rendered component based on the data provided in each object. */
+
 const menuLinks = [
   { path: "/", label: "Home" },
   { path: "/about", label: "About" },
@@ -17,11 +23,21 @@ const menuLinks = [
 ];
 
 const Menu = () => {
+  /* The code snippet `const container = React.useRef();` is creating a reference to a DOM element within
+the functional component `Menu`. This reference is stored in the `container` variable and can be
+used to access and manipulate the DOM element in React. */
   const container = React.useRef();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
+  /* The line `const tl = React.useRef();` is creating a reference to a mutable object that persists
+across re-renders in a functional component using React's `useRef` hook. In this specific case, `tl`
+is being used to store a reference to a GSAP timeline object within the `Menu` component. This
+allows the component to access and manipulate the GSAP timeline instance across different component
+renders without triggering a re-render. */
   const tl = React.useRef();
 
+  /* This code snippet is utilizing the `useGSAP` hook and the `useEffect` hook in a React functional
+component to create a menu animation using GSAP (GreenSock Animation Platform) library. */
   useGSAP(
     () => {
       gsap.set(".menu__link__item__holder", { y: 100 });
@@ -52,6 +68,9 @@ const Menu = () => {
     }
   }, [isMenuOpen]);
 
+  /**
+   * The function `toggleMenu` toggles the value of `isMenuOpen` between true and false.
+   */
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
